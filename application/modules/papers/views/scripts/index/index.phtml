@@ -1,0 +1,40 @@
+<!-- /application/modules/papers/views/scripts/index/index.phtml -->
+<table>
+	<thead>
+		<tr>
+			<td>Название статьи</td>
+			<td>Источник</td>
+			<td>Авторы</td>
+			<td>Дата публикации</td>
+		</tr>
+	</thead>
+	<tbody>
+		<?php foreach ($this->entries as $entry): ?>
+	    <tr>
+	    	<td>
+	    		<?php echo "<a href='{$this->url(array(
+	    						'controller' => 'index',
+	    						'action'	 => 'edit-paper',
+	    						'id'		 => $entry->id))}'>
+	    					{$this->escape($entry->title)}</a>"?>
+	    	</td>
+	    	<td><?php echo $this->escape($entry->source) ?></td>
+	    	<td><?php 
+	    		if (null !== $entry->authors)
+	    			$authors = $entry->authors;		//to eleminate Notice about overloading
+	    			foreach ($authors as $author) {
+	    				echo "<a href='
+	    					{$this->url(array(
+		    					'controller'	=>	'index',
+		    					'action'		=>	'edit-author',
+		    					'id'			=>	$author->getId()))}'
+		    				>{$author->getFIO()}</a>";
+	    				if (true == next($authors)) echo ', ';
+	    			}
+	    		?>
+	    	</td>
+	    	<td><?php echo $this->escape($entry->date) ?></td>
+	    </tr>
+	    <?php endforeach ?>
+	</tbody>
+</table>

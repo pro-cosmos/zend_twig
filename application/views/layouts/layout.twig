@@ -1,0 +1,33 @@
+    <!DOCTYPE html>
+    <html>
+    <head>
+    <title>Bootstrap 101 Шаблон</title>
+    {{ headLink|raw }}
+    {{ headScript|raw }}
+    <!-- Bootstrap -->
+    </head>
+    <body style="padding:20px">
+    <div class="container">
+
+    <div class="navbar">
+    <div class="navbar-inner">
+    <a class="brand" href="/moneybook">MoneyBook</a>
+    <ul class="nav">
+      <li class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#">Отчет за месяц<b class="caret"></b></a>
+       <ul class="dropdown-menu">
+       <li><a href="/moneybook/index/report/2014-01">Январь</a></li>
+       <li><a href="/moneybook/index/report/2014-02">Февраль</a></li>
+       <li><a href="/moneybook/index/report/2014-03">Март</a></li>
+       </ul>
+    </li>
+    <li><a href="/moneybook/record/add">Добавить расход</a></li>
+    </ul>
+    </div>
+    </div>
+
+    <h1>{{ pageheader|raw}}</h1>
+     {{ content|raw }}
+    </div>
+    </body>
+    </html>

@@ -1,0 +1,19 @@
+<h1>common index.twig </h1>
+<ul>
+    {% for section in sections %}
+    <li>{{ section }}</li>
+    {% endfor %}
+</ul>
+
+
+<h1>table</h1>
+<table border=1>
+    {% for row in rows %}
+    <tr>
+<td>{{ row['id'] }}</td>
+<td>{{ row.category }}</td>
+<td>{{ row.amount }}</td>
+<td>{{ row.date_create }}</td>
+</tr>
+    {% endfor %}
+</table>

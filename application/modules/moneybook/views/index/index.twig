@@ -1,0 +1,25 @@
+<table class="table table-condensed table-hover table-bordered" >
+<thead>
+<tr>
+<th>№</th>
+<th>Категория</th>
+<th>Сумма</th>
+<th>Дата добавления</th>
+<th></th>
+</tr>
+
+<tbody>
+    {% for row in rows %}
+    <tr>
+<td>{{ row.id }}</td>
+<td>{{ row.category }}</td>
+<td>{{ row.amount }}</td>
+<td>{{ row.date_create }}</td>
+<td>
+    <button class="btn btn-small" type="button">Изменить</button>
+    <button class="btn btn-small btn-danger" type="button">Удалить</button>
+</td>
+</tr>
+    {% endfor %}
+</tbody>
+</table>

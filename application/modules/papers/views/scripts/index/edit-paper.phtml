@@ -1,0 +1,13 @@
+<script type="text/javascript">
+	$(function(){
+		$('#delete-button').usableDelete({
+			'deleteLink':    "/admin/papers/delete-paper/id/<?=$this->form->getValue('id')?>",
+			'sureText':      "Точно?",
+			'deleteText':    "Удалить",
+			'doNotText':     "Не надо"
+		});
+</script>
+
+<?php 
+$this->form->setAction($this->url());
+echo $this->form;?>
