@@ -46,6 +46,7 @@ class CoreIntegration_Twig_View extends Zend_View_Abstract {
   public function render($name) {
     //----------------------------- Styles -----------------------------
     $this->headLink()->appendStylesheet('/bootstrap/css/bootstrap.css?');
+    $this->headLink()->appendStylesheet('/bootstrap/css/datepicker.css?');
     $this->headScript()->appendFile('http://code.jquery.com/jquery-latest.js?');
     $this->headScript()->appendFile('/bootstrap/js/bootstrap.min.js?');
     $this->headScript()->appendFile('/bootstrap/js/bootstrap-datepicker.js?');
