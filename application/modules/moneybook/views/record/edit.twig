@@ -1,12 +1,22 @@
-    <form>
-    <fieldset>
-    <legend>Редактирование записи</legend>
-    <label>Описание поля</label>
-    <input type="text" placeholder="Введите текст…">
-    <span class="help-block">Подсказка или доп. информация.</span>
-    <label class="checkbox">
-    <input type="checkbox"> Нажми здесь и выдели checkbox
-    </label>
-    <button type="submit" class="btn">Отправить</button>
-    </fieldset>
-    </form>
+<form  action="{{ form.action|raw }}"   method="{{ form.method|raw }}">
+
+<fieldset>
+<legend>Редактирование записи</legend>
+{{ form.id|raw }}
+<dd>{{ form.category|raw }}</dd>
+<dd>{{ form.amount|raw }}</dd>
+<dd>
+<div data-date-format="dd-mm-yyyy" data-date="" id="dp3" class="input-append date datepicker">
+{{ form.date_create|raw }}
+<span class="add-on"><i class="icon-calendar"></i></span>
+</div>
+</dd>
+
+<dd>{{ form.submit|raw }}</dd>
+</form>
+</fieldset>
+
+
+<script>
+$('.datepicker').datepicker()
+</script>

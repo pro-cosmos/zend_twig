@@ -48,6 +48,7 @@ class CoreIntegration_Twig_View extends Zend_View_Abstract {
     $this->headLink()->appendStylesheet('/bootstrap/css/bootstrap.css?');
     $this->headScript()->appendFile('http://code.jquery.com/jquery-latest.js?');
     $this->headScript()->appendFile('/bootstrap/js/bootstrap.min.js?');
+    $this->headScript()->appendFile('/bootstrap/js/bootstrap-datepicker.js?');
 
     $this->_variables['headLink'] = $this->headLink();
     $this->_variables['headScript'] = $this->headScript();

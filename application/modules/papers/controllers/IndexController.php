@@ -28,6 +28,7 @@ $this->view->sections = array('11','22','33');;
 
     	$request = $this->getRequest();
         $form    = new Papers_Form_Paper_Add();
+var_dump($request->getPost());
 
         if ($request->isPost()) {
         	if ($form->isValid($request->getPost())) {
@@ -35,13 +36,19 @@ $this->view->sections = array('11','22','33');;
             	$paper->setTitle_en($form->title)
             		  ->setFile($form->file)
             		  ->setAuthors($form->authors);
+
+
+
             	$mapper	= new Papers_Model_PaperMapper();
                 $mapper->save($paper);
-                return $this->_helper->redirector('index', 'index');
+               // return $this->_helper->redirector('index', 'index');
             }
         }
 
         $this->view->form = $form;
+
+//$this->form->setAction($this->url());
+//echo $this->form;
     }
 
     public function editPaperAction()
@@ -56,7 +63,9 @@ $this->view->sections = array('11','22','33');;
         $form->populate($model->getOptions());
         $form->populate(array('authors' => $model->getAuthors(false)));
 
-        if ($request->isPost()) {
+
+
+if ($request->isPost()) {
         	if ($form->isValid($request->getPost())) {
             	$paper = new Papers_Model_Paper($form->getValues());
             	$paper->setTitle_en($form->title)

@@ -1,3 +1,6 @@
-zend_twig
+MoneyBook
 =========
-Example project based on Zend + Twig + Bootstrap
+MoneyBook is example of CRUD project based on Zend + Twig + Bootstrap.
+It represent money expenditure account.
+
+

@@ -1,25 +1,32 @@
-<table class="table table-condensed table-hover table-bordered" >
-<thead>
-<tr>
-<th>№</th>
-<th>Категория</th>
-<th>Сумма</th>
-<th>Дата добавления</th>
-<th></th>
-</tr>
+{% if rows  %}
 
-<tbody>
-    {% for row in rows %}
+    <table class="table table-condensed table-hover table-bordered" >
+    <thead>
     <tr>
-<td>{{ row.id }}</td>
-<td>{{ row.category }}</td>
-<td>{{ row.amount }}</td>
-<td>{{ row.date_create }}</td>
-<td>
-    <button class="btn btn-small" type="button">Изменить</button>
-    <button class="btn btn-small btn-danger" type="button">Удалить</button>
-</td>
-</tr>
+    <th>№</th>
+    <th>Категория</th>
+    <th>Сумма</th>
+    <th>Дата добавления</th>
+    <th></th>
+    </tr>
+    <tbody>
+    {% for row in rows %}
+        <tr>
+    <td>{{ row.id }}</td>
+    <td>{{ row.category_title }}</td>
+    <td>{{ row.amount }}</td>
+    <td>{{ row.date_create }}</td>
+    <td>
+        <a href="/moneybook/record/edit/id/{{ row.id }}"><button class="btn btn-small" type="button">Изменить</button></a>
+        <a href="/moneybook/record/delete/id/{{ row.id }}"><button class="btn btn-small btn-danger" type="button">Удалить</button></a>
+    </td>
+    </tr>
     {% endfor %}
-</tbody>
-</table>
+    </tbody>
+    </table>
+
+{% else %}
+        <div class="alert alert-success">
+        На этот месяц записей нет.
+        </div>
+{% endif %}

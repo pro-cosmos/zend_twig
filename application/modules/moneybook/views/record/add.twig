@@ -1,12 +1,4 @@
-    <form>
-    <fieldset>
-    <legend>Добавление записи</legend>
-    <label>Описание поля</label>
-    <input type="text" placeholder="Введите текст…">
-    <span class="help-block">Подсказка или доп. информация.</span>
-    <label class="checkbox">
-    <input type="checkbox"> Нажми здесь и выдели checkbox
-    </label>
-    <button type="submit" class="btn">Отправить</button>
-    </fieldset>
-    </form>
+<fieldset>
+<legend>Добавление записи</legend>
+{{ form|raw }}
+</fieldset>

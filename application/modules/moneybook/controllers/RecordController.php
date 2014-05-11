@@ -11,57 +11,67 @@ class Moneybook_RecordController extends Zend_Controller_Action {
 
     $d = array();
     foreach ($rec as $r) {
-      //var_dump($r);
       $d[] = $r;
     }
 
     $this->view->rows = $d;
   }
 
+  public function deleteAction() {
+    $this->_helper->viewRenderer->setNoRender(true);
+    $Record = new Moneybook_Model_Records();
+    $delRecord = $Record->find($this->getRequest()->getParam('id'), $Record);
+    if ($delRecord)
+      $delRecord->delete($delRecord);
 
-  public function addAction()
-    {
-    	$this->view->headTitle('Добавить статью');
+    return $this->_helper->redirector('index', 'index');
+  }
 
-    	$request = $this->getRequest();
-      $form    = new Moneybook_Form_Records_Add();
+  public function addAction() {
+    $this->view->headTitle('Добавить статью');
 
-        if ($request->isPost()) {
-        	if ($form->isValid($request->getPost())) {
-//            	$paper = new Papers_Model_Paper($form->getValues());
-//            	$paper->setTitle_en($form->title)
-//            		  ->setFile($form->file)
-//            		  ->setAuthors($form->authors);
-//            	$mapper	= new Papers_Model_PaperMapper();
-//                $mapper->save($paper);
-//                return $this->_helper->redirector('index', 'index');
-            }
-        }
+    $request = $this->getRequest();
+    $form = new Moneybook_Form_Records_Add();
 
-        $this->view->form = $form;
+    if ($request->isPost()) {
+      if ($form->isValid($request->getPost())) {
+        $Record = new Moneybook_Model_Records($request->getPost()); //$form->getValues());
+        $Record->setOptions($request->getPost());
+        $Record->save($Record);
+        return $this->_helper->redirector('index', 'index');
+      }
     }
 
+    $this->view->form = $form;
+  }
 
-    public function editAction()
-    {
-    	$this->view->headTitle('Добавить статью');
-var_dump($this);
-    	$request = $this->getRequest();
-      $form    = new Moneybook_Form_Records_Add();
+  public function editAction() {
+    $this->view->headTitle('Изменить расход');
 
-        if ($request->isPost()) {
-        	if ($form->isValid($request->getPost())) {
-//            	$paper = new Papers_Model_Paper($form->getValues());
-//            	$paper->setTitle_en($form->title)
-//            		  ->setFile($form->file)
-//            		  ->setAuthors($form->authors);
-//            	$mapper	= new Papers_Model_PaperMapper();
-//                $mapper->save($paper);
-//                return $this->_helper->redirector('index', 'index');
-            }
-        }
+    $request = $this->getRequest();
 
-        $this->view->form = $form;
+    $Record = new Moneybook_Model_Records();
+    $editRecord = $Record->find($this->getRequest()->getParam('id'), $Record);
+    $editRecord->setDatecreate(date('d-m-Y', strtotime($editRecord->getDate_create())));
+    $form = new Moneybook_Form_Records_Edit();
+    $form->populate($editRecord->getOptions());
+    //$form->populate(array('authors' => $model->getAuthors(false)));
+
+    if ($request->isPost()) {
+      if ($form->isValid($request->getPost())) {
+        $Record = new Moneybook_Model_Records($request->getPost()); //$form->getValues());
+
+        $dataPost = $request->getPost();
+        $dataPost['date_create'] = date('Y-m-d H:i:s', strtotime($dataPost['date_create']));
+
+        $Record->setOptions($dataPost);
+
+        $Record->save($Record);
+        return $this->_helper->redirector('index', 'index');
+      }
     }
+
+    $this->view->form = $form;
+  }
 
 }
